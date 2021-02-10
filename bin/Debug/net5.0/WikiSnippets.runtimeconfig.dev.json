@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/cleiton/.dotnet/store/|arch|/|tfm|",
+      "/Users/cleiton/.nuget/packages"
+    ]
+  }
+}
