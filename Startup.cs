@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,10 +27,12 @@ namespace WikiSnippets
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<WikiSnippetContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("WikiSnippetsConnection")));
 
             services.AddControllers();
 
-            services.AddScoped<ISnippetRepository, MockSnippetRepository>();
+            // services.AddScoped<ISnippetRepository, MockSnippetRepository>();
+            services.AddScoped<ISnippetRepository, SqlWikiSnippetRepository>();
 
             services.AddSwaggerGen(c =>
             {
